@@ -7,7 +7,7 @@
 html,body, #__nuxt, #__layout{
     height:100%!important;
     width: 100%!important;
-overflow-y: ;}
+}
 
 body{
     font-family: 'Montserrat';

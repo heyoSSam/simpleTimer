@@ -3,8 +3,33 @@ import {ref} from 'vue';
 
 let day = ref(0), hour = ref(0), minute = ref(0), second = ref(0);
 
-function addition(value:number):number {
-    return value++;
+function start() {
+    let Interval = setInterval(() => {
+        if(day.value == 0 && hour.value == 0 && minute.value == 0 && second.value == 0){
+            clearInterval(Interval);
+        }
+        
+        else{
+            if(second.value == 0 && (minute.value > 0 || hour.value > 0 || day.value > 0)){
+                if(minute.value > 0)
+                    minute.value--;
+                if(hour.value > 0){
+                    hour.value--;
+                    minute.value = 59;
+                }
+                if(day.value > 0){
+                    day.value--;
+                    hour.value = 23;
+                    minute.value = 59;
+                }
+                second.value = 59;
+            } else{
+                second.value--;
+            }
+        }
+    }, 1000);
+
+    return {day,hour,minute,second};
 }
 </script>
 
@@ -47,7 +72,7 @@ function addition(value:number):number {
             </div>
 
             <div class="mx-auto mt-5">
-                <button class="w-screen mx-auto">Start</button>
+                <button class="w-screen mx-auto" @click="start(day,hour,minute,second)">Start</button>
             </div>
         </div>
     </div>
