@@ -5,7 +5,7 @@
 <template>
     <div class="h-screen flex flex-col">
         <header class="flex justify-center">
-            <h1 class="text-5xl">Timer ⏰</h1>
+            <h1 class="text-5xl mt-3">Timer ⏰</h1>
         </header>
 
         <main class="flex-1 flex flex-col">
