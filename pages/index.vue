@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 
-let day = ref(0), hour = ref(0), minute = ref(0), second = ref(0);
+let day = ref(0), hour = ref(0), minute = ref(0), second = ref(0), end = ref(false);
 
 function start() {
     let Interval = setInterval(() => {
         if(day.value == 0 && hour.value == 0 && minute.value == 0 && second.value == 0){
+            end.value = true;
             clearInterval(Interval);
         }
         
@@ -34,7 +35,7 @@ function start() {
 </script>
 
 <template>
-    <div class="flex-grow flex flex-col">
+    <div class="flex-grow flex flex-col" :class="{'opacity-5' : end}">
         <div class="my-auto">
             <div class="flex justify-center content-center">
                 <div>
@@ -72,11 +73,13 @@ function start() {
             </div>
 
             <div class="mx-auto mt-5">
-                <button class="w-screen mx-auto" @click="start(day,hour,minute,second)">Start</button>
+                <button class="w-screen mx-auto" @click="start">Start</button>
             </div>
         </div>
     </div>
+
+    <div v-if="end">
+        <Notification @close-notice="end = !end;"/>
+    </div>
     
-
-
 </template>
